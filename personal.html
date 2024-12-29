@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人简介 - 刘青</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', sans-serif;
+            line-height: 1.6;
+            color: #fff;
+            background: url('image/background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.6));
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .header {
+            text-align: center;
+            padding: 3rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+            animation: scaleIn 0.8s ease-out;
+        }
+
+        .profile-img {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    margin-bottom: 1.5rem;
+    border: 4px solid rgba(0, 168, 255, 0.3);
+    box-shadow: 0 0 20px rgba(0, 168, 255, 0.4);
+    transition: all 0.5s ease;
+    position: relative;
+    animation: float 6s ease-in-out infinite;
+}
+
+.profile-img:hover {
+    transform: scale(1.05) rotate(5deg);
+    border-color: rgba(0, 168, 255, 0.8);
+    box-shadow: 0 0 30px rgba(0, 168, 255, 0.6);
+}
+
+/* 添加浮动动画 */
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-15px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+/* 添加光晕效果 */
+.profile-img::after {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    border-radius: 50%;
+    background: radial-gradient(circle at center, 
+        rgba(0, 168, 255, 0.2) 0%,
+        transparent 70%);
+    z-index: -1;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.5;
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 0.2;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0.5;
+    }
+}
+
+        .section {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .section:nth-child(1) {
+            animation-delay: 0.2s;
+        }
+
+        .section:nth-child(2) {
+            animation-delay: 0.4s;
+        }
+
+        .section:nth-child(3) {
+            animation-delay: 0.6s;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+        }
+
+        h1 {
+            color: #fff;
+            margin-bottom: 1rem;
+            font-size: 2.5em;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        h2 {
+            color: #00a8ff;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid rgba(0, 168, 255, 0.3);
+            font-size: 1.8em;
+        }
+
+        .skill-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .skill-item {
+            background: rgba(0, 168, 255, 0.1);
+            padding: 1rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 168, 255, 0.2);
+            opacity: 0;
+            animation: slideInLeft 0.6s ease-out forwards;
+        }
+
+        .skill-item:nth-child(1) {
+            animation-delay: 0.3s;
+        }
+
+        .skill-item:nth-child(2) {
+            animation-delay: 0.5s;
+        }
+
+        .skill-item:nth-child(3) {
+            animation-delay: 0.7s;
+        }
+
+        .skill-item:hover {
+            background: rgba(0, 168, 255, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .skill-item i {
+            font-size: 2em;
+            color: #00a8ff;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            opacity: 0;
+            animation: slideInLeft 0.6s ease-out forwards;
+        }
+
+        .contact-item:nth-child(1) {
+            animation-delay: 0.3s;
+        }
+
+        .contact-item:nth-child(2) {
+            animation-delay: 0.5s;
+        }
+
+        .contact-item:nth-child(3) {
+            animation-delay: 0.7s;
+        }
+
+        .contact-item:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateX(5px);
+        }
+
+        .contact-item i {
+            font-size: 1.5em;
+            color: #00a8ff;
+        }
+
+        .back-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            padding: 12px 25px;
+            background: rgba(0, 168, 255, 0.1);
+            border: 2px solid rgba(0, 168, 255, 0.3);
+            border-radius: 30px;
+            color: #fff;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+        }
+
+        .back-button:hover {
+            background: rgba(0, 168, 255, 0.2);
+            transform: translateX(-5px);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .header {
+                padding: 2rem;
+            }
+            
+            .section {
+                padding: 1.5rem;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+            
+            .skill-list {
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            }
+        }
+
+        .about-content {
+            margin-top: 20px;
+        }
+
+        .about-text {
+            line-height: 1.8;
+        }
+
+        .highlight-text {
+            font-size: 1.4em;
+            color: #00a8ff;
+            margin-bottom: 20px;
+            font-weight: 500;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .about-details {
+            margin: 30px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .detail-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            opacity: 0;
+            animation: slideInLeft 0.6s ease-out forwards;
+        }
+
+        .detail-item:nth-child(1) {
+            animation-delay: 0.3s;
+        }
+
+        .detail-item:nth-child(2) {
+            animation-delay: 0.5s;
+        }
+
+        .detail-item:nth-child(3) {
+            animation-delay: 0.7s;
+        }
+
+        .detail-item:hover {
+            transform: translateX(10px);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .detail-item i {
+            font-size: 1.5em;
+            color: #00a8ff;
+            padding-top: 5px;
+        }
+
+        .detail-content h4 {
+            color: #00a8ff;
+            margin-bottom: 8px;
+            font-size: 1.1em;
+        }
+
+        .achievement-highlights {
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(0, 168, 255, 0.1);
+            border-radius: 15px;
+            border: 1px solid rgba(0, 168, 255, 0.2);
+        }
+
+        .achievement-highlights h4 {
+            color: #00a8ff;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .achievement-highlights ul {
+            list-style: none;
+            padding-left: 25px;
+        }
+
+        .achievement-highlights li {
+            margin-bottom: 12px;
+            position: relative;
+        }
+
+        .achievement-highlights li::before {
+            content: '•';
+            color: #00a8ff;
+            position: absolute;
+            left: -20px;
+            font-size: 1.5em;
+        }
+
+        @media (max-width: 768px) {
+            .detail-item:hover {
+                transform: none;
+            }
+        }
+
+        .experience-timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .experience-timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 2px;
+            background: rgba(0, 168, 255, 0.3);
+        }
+
+        .experience-item {
+            position: relative;
+            margin-bottom: 40px;
+            padding-left: 30px;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .experience-item:nth-child(1) {
+            animation-delay: 0.4s;
+        }
+
+        .experience-item:nth-child(2) {
+            animation-delay: 0.6s;
+        }
+
+        .experience-item::before {
+            content: '';
+            position: absolute;
+            left: -6px;
+            top: 0;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: #00a8ff;
+            border: 3px solid rgba(0, 168, 255, 0.3);
+        }
+
+        .experience-date {
+            color: #00a8ff;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .job-title {
+            display: inline-block;
+            background: rgba(0, 168, 255, 0.1);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            margin: 10px 0;
+        }
+
+        .job-description {
+            margin-top: 15px;
+        }
+
+        .job-description h4 {
+            color: #00a8ff;
+            margin: 15px 0 10px 0;
+        }
+
+        .job-description ul {
+            list-style: none;
+            padding-left: 20px;
+        }
+
+        .job-description li {
+            margin-bottom: 8px;
+            position: relative;
+        }
+
+        .job-description li::before {
+            content: '•';
+            color: #00a8ff;
+            position: absolute;
+            left: -20px;
+            font-size: 1.5em;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .tech-tags span {
+            background: rgba(0, 168, 255, 0.1);
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-size: 0.85em;
+            border: 1px solid rgba(0, 168, 255, 0.2);
+            opacity: 0;
+            animation: scaleIn 0.5s ease-out forwards;
+        }
+
+        .tech-tags span:nth-child(1) { animation-delay: 0.2s; }
+        .tech-tags span:nth-child(2) { animation-delay: 0.3s; }
+        .tech-tags span:nth-child(3) { animation-delay: 0.4s; }
+        .tech-tags span:nth-child(4) { animation-delay: 0.5s; }
+
+        .tech-tags span {
+            transition: all 0.3s ease;
+        }
+
+        .tech-tags span:hover {
+            transform: translateY(-3px);
+            background: rgba(0, 168, 255, 0.2);
+            box-shadow: 0 5px 15px rgba(0, 168, 255, 0.2);
+        }
+
+        /* 页面加载动画 */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* 为各个部分添加动画 */
+        .header {
+            animation: scaleIn 0.8s ease-out;
+        }
+
+        .section {
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .section:nth-child(1) {
+            animation-delay: 0.2s;
+        }
+
+        .section:nth-child(2) {
+            animation-delay: 0.4s;
+        }
+
+        .section:nth-child(3) {
+            animation-delay: 0.6s;
+        }
+
+        .detail-item {
+            opacity: 0;
+            animation: slideInLeft 0.6s ease-out forwards;
+        }
+
+        .detail-item:nth-child(1) {
+            animation-delay: 0.3s;
+        }
+
+        .detail-item:nth-child(2) {
+            animation-delay: 0.5s;
+        }
+
+        .detail-item:nth-child(3) {
+            animation-delay: 0.7s;
+        }
+
+        .experience-item {
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .experience-item:nth-child(1) {
+            animation-delay: 0.4s;
+        }
+
+        .experience-item:nth-child(2) {
+            animation-delay: 0.6s;
+        }
+
+        /* 联系方式动画 */
+        .contact-item {
+            opacity: 0;
+            animation: slideInLeft 0.6s ease-out forwards;
+        }
+
+        .contact-item:nth-child(1) { animation-delay: 0.3s; }
+        .contact-item:nth-child(2) { animation-delay: 0.5s; }
+        .contact-item:nth-child(3) { animation-delay: 0.7s; }
+
+        /* 滚动显示动画 */
+        @media (prefers-reduced-motion: no-preference) {
+            .scroll-reveal {
+                opacity: 0;
+                transform: translateY(20px);
+                transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            }
+
+            .scroll-reveal.visible {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .contact-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1.2rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .contact-item:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 168, 255, 0.2);
+        }
+
+        .contact-item i {
+            font-size: 1.8em;
+            color: #00a8ff;
+            padding: 0.5rem;
+            background: rgba(0, 168, 255, 0.1);
+            border-radius: 10px;
+        }
+
+        .contact-detail h4 {
+            color: #00a8ff;
+            margin-bottom: 5px;
+            font-size: 1em;
+        }
+
+        .contact-detail a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-detail a:hover {
+            color: #00a8ff;
+        }
+
+        .social-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 1rem;
+            background: rgba(0, 168, 255, 0.1);
+            border-radius: 12px;
+            color: #fff;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 168, 255, 0.2);
+        }
+
+        .social-item:hover {
+            background: rgba(0, 168, 255, 0.2);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 168, 255, 0.3);
+        }
+
+        .social-item i {
+            font-size: 1.5em;
+            color: #00a8ff;
+        }
+
+        @media (max-width: 768px) {
+            .social-links {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        .music-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    background: rgba(0, 168, 255, 0.1);
+    border: 2px solid rgba(0, 168, 255, 0.3);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+.music-toggle:hover {
+    transform: scale(1.1);
+    background: rgba(0, 168, 255, 0.2);
+}
+
+.music-toggle.paused {
+    opacity: 0.6;
+}
+
+.music-toggle i {
+    color: #fff;
+    font-size: 1.2em;
+}
+    </style>
+</head>
+<body>
+    <a href="detail.html" class="back-button">
+        <i class="fas fa-arrow-left"></i> 返回上一页
+    </a>
+    
+    <div class="container">
+        <header class="header">
+            <img src="image/avatar.jpg" alt="个人照片" class="profile-img">
+            <h1>刘青</h1>
+            <p>软件开发工程师 / 前端开发者</p>
+        </header>
+
+        <section class="section">
+            <h2><i class="fas fa-user"></i> 关于我</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p class="highlight-text">「用代码构建梦想，以创新改变未来」</p>
+                    <p>作为一名充满热情的软件开发者，我专注于Web前端开发领域。在校期间，我积极参与各类项目开发，不断提升自己的技术能力。我热爱编程，享受将创意转化为现实的过程。</p>
+                    
+                    <div class="about-details">
+                        <div class="detail-item">
+                            <i class="fas fa-bullseye"></i>
+                            <div class="detail-content">
+                                <h4>职业目标</h4>
+                                <p>致力于成为一名全栈开发工程师，专注于构建高性能、可扩展的Web应用</p>
+                            </div>
+                        </div>
+                        
+                        <div class="detail-item">
+                            <i class="fas fa-heart"></i>
+                            <div class="detail-content">
+                                <h4>个人特长</h4>
+                                <p>良好的学习能力和团队协作精神，对新技术充满热情，善于解决问题</p>
+                            </div>
+                        </div>
+                        
+                        <div class="detail-item">
+                            <i class="fas fa-laptop-code"></i>
+                            <div class="detail-content">
+                                <h4>技术追求</h4>
+                                <p>持续学习前沿技术，关注性能优化和用户体验，追求代码的优雅与效率</p>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <div class="achievement-highlights">
+                        <h4><i class="fas fa-trophy"></i> 主要成就</h4>
+                        <ul>
+                            <li>主导开发校园二手交易平台，服务超过3000名用户</li>
+                            <li>获得2023年江西省大学生计算机设计大赛二等奖</li>
+                            <li>成功组织多次校园技术分享会，影响100+名学生</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2><i class="fas fa-briefcase"></i> 工作经历</h2>
+            <div class="experience-timeline">
+                <div class="experience-item scroll-reveal">
+                    <div class="experience-date">
+                        <i class="fas fa-calendar-alt"></i>
+                        2024.01 - 2024.03
+                    </div>
+                    <div class="experience-content">
+                        <h3>江西网络科技有限公司</h3>
+                        <span class="job-title">Web开发实习生</span>
+                        <div class="job-description">
+                            <p>负责企业管理系统的开发维护工作，主要使用React技术栈进行开发。</p>
+                            <h4>主要职责：</h4>
+                            <ul>
+                                <li>使用React + Ant Design开发后台管理系统界面</li>
+                                <li>负责数据可视化模块的开发，使用ECharts实现数据图表展示</li>
+                                <li>优化系统性能，将首屏加载时间减少30%</li>
+                                <li>参与需求分析和技术方案讨论，提出合理化建议</li>
+                            </ul>
+                            <div class="tech-tags">
+                                <span>React</span>
+                                <span>Ant Design</span>
+                                <span>ECharts</span>
+                                <span>Git</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        
+                <div class="experience-item scroll-reveal">
+                    <div class="experience-date">
+                        <i class="fas fa-calendar-alt"></i>
+                        2023.07 - 2023.09
+                    </div>
+                    <div class="experience-content">
+                        <h3>南昌科技有限公司</h3>
+                        <span class="job-title">前端开发实习生</span>
+                        <div class="job-description">
+                            <p>参与公司电商平台的前端开发工作，负责新功能开发和性能优化。</p>
+                            <h4>主要职责：</h4>
+                            <ul>
+                                <li>使用Vue.js开发商品展示、购物车等核心功能模块</li>
+                                <li>实现移动端适配，提升用户体验</li>
+                                <li>编写单元测试，确保代码质量</li>
+                                <li>解决线上反馈的bug，完成性能优化工作</li>
+                            </ul>
+                            <div class="tech-tags">
+                                <span>Vue.js</span>
+                                <span>Element UI</span>
+                                <span>Webpack</span>
+                                <span>Jest</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2><i class="fas fa-phone-alt"></i> 联系方式</h2>
+            <div class="contact-wrapper">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div class="contact-detail">
+                            <h4>邮箱</h4>
+                            <a href="mailto:3277534738@qq.com">3277534738@qq.com</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div class="contact-detail">
+                            <h4>电话</h4>
+                            <span>+86 181 7406 1118</span>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div class="contact-detail">
+                            <h4>地址</h4>
+                            <span>江西省南昌市</span>
+                        </div>
+                    </div>
+                </div>
+        
+                <div class="social-links">
+                    <a href="#" class="social-item" title="GitHub">
+                        <i class="fab fa-github"></i>
+                        <span>GitHub</span>
+                    </a>
+                    <a href="#" class="social-item" title="微信">
+                        <i class="fab fa-weixin"></i>
+                        <span>微信</span>
+                    </a>
+                    <a href="#" class="social-item" title="QQ">
+                        <i class="fab fa-qq"></i>
+                        <span>QQ</span>
+                    </a>
+                    <a href="#" class="social-item" title="掘金">
+                        <i class="fas fa-book"></i>
+                        <span>掘金</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </div>
+    <audio id="bgMusic" loop>
+        <source src="background-music.mp3" type="audio/mp3">
+    </audio>
+    <div id="musicToggle" class="music-toggle">
+        <i class="fas fa-music"></i>
+    </div>
+    <script>
+    // 滚动显示动画
+    function handleScrollAnimation() {
+        const elements = document.querySelectorAll('.scroll-reveal');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        elements.forEach(element => {
+            observer.observe(element);
+        });
+    }
+
+    // 页面加载完成后初始化
+    document.addEventListener('DOMContentLoaded', () => {
+    const bgMusic = document.getElementById('bgMusic');
+    const musicToggle = document.getElementById('musicToggle');
+    
+    // 从 localStorage 获取音乐状态
+    let isMusicPlaying = localStorage.getItem('isMusicPlaying') === 'true';
+    
+    // 初始化音乐状态
+    if (isMusicPlaying) {
+        // 添加延迟确保音频元素已加载
+        setTimeout(() => {
+            bgMusic.play().catch(() => {
+                isMusicPlaying = false;
+                localStorage.setItem('isMusicPlaying', 'false');
+                musicToggle.classList.add('paused');
+            });
+        }, 100);
+        musicToggle.classList.remove('paused');
+    } else {
+        bgMusic.pause();
+        musicToggle.classList.add('paused');
+    }
+    
+    // 音乐控制按钮点击事件
+    musicToggle.addEventListener('click', function() {
+        if (bgMusic.paused) {
+            bgMusic.play().then(() => {
+                isMusicPlaying = true;
+                localStorage.setItem('isMusicPlaying', 'true');
+                musicToggle.classList.remove('paused');
+            }).catch(error => {
+                console.log('播放失败:', error);
+            });
+        } else {
+            bgMusic.pause();
+            isMusicPlaying = false;
+            localStorage.setItem('isMusicPlaying', 'false');
+            musicToggle.classList.add('paused');
+        }
+    });
+
+    // 用户首次交互时尝试播放音乐
+    document.addEventListener('click', function initPlay() {
+        if (!isMusicPlaying) {
+            bgMusic.play().then(() => {
+                isMusicPlaying = true;
+                localStorage.setItem('isMusicPlaying', 'true');
+                musicToggle.classList.remove('paused');
+            }).catch(error => {
+                console.log('自动播放失败:', error);
+            });
+        }
+        // 移除事件监听器，确保只执行一次
+        document.removeEventListener('click', initPlay);
+    }, { once: true });
+});
+    </script>
+</body>
+</html>
