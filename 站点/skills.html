@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>技能详解 - 刘青</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', sans-serif;
+            line-height: 1.6;
+            color: #fff;
+            background: url('image/background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.6));
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .skills-section {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .skill-category {
+            margin-bottom: 2rem;
+        }
+
+        .skill-category h2 {
+            color: #00a8ff;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid rgba(0, 168, 255, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .skill-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .skill-card {
+            background: rgba(0, 168, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border: 1px solid rgba(0, 168, 255, 0.2);
+            transition: all 0.3s ease;
+            opacity: 0;
+            animation: slideInLeft 0.6s ease-out forwards;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            background: rgba(0, 168, 255, 0.15);
+        }
+
+        .skill-icon {
+            font-size: 2em;
+            color: #00a8ff;
+            margin-bottom: 1rem;
+        }
+
+        .skill-level {
+            margin: 1rem 0;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .skill-progress {
+            height: 100%;
+            background: linear-gradient(90deg, #00a8ff, #0097e6);
+            border-radius: 4px;
+            width: 0;
+            transition: width 1s ease-out;
+        }
+
+        .skill-details {
+            margin-top: 1rem;
+        }
+
+        .skill-tag {
+            display: inline-block;
+            padding: 4px 12px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            margin: 4px;
+            font-size: 0.9em;
+        }
+
+        .back-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            padding: 12px 25px;
+            background: rgba(0, 168, 255, 0.1);
+            border: 2px solid rgba(0, 168, 255, 0.3);
+            border-radius: 30px;
+            color: #fff;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+        }
+
+        .back-button:hover {
+            background: rgba(0, 168, 255, 0.2);
+            transform: translateX(-5px);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .skills-section {
+                padding: 1rem;
+            }
+        }
+        .skills-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    animation: fadeInUp 0.8s ease-out;
+}
+
+.skills-header h1 {
+    color: #fff;
+    font-size: 2.5em;
+    margin-bottom: 1rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.skills-intro {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.2em;
+    margin-bottom: 1.5rem;
+}
+
+.skills-divider {
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(to right, #00a8ff, transparent);
+    margin: 0 auto;
+}
+
+.skill-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+.category-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    animation: fadeInUp 0.8s ease-out;
+}
+
+.category-header i {
+    font-size: 2.5em;
+    color: #00a8ff;
+    margin-bottom: 1rem;
+    animation: pulse 2s infinite;
+}
+
+.category-header h2 {
+    font-size: 2em;
+    color: #fff;
+    margin: 1rem 0;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.category-desc {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.1em;
+}
+
+.skill-card {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+.music-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    background: rgba(0, 168, 255, 0.1);
+    border: 2px solid rgba(0, 168, 255, 0.3);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+.music-toggle:hover {
+    transform: scale(1.1);
+    background: rgba(0, 168, 255, 0.2);
+}
+
+.music-toggle.paused {
+    opacity: 0.6;
+}
+
+.music-toggle i {
+    color: #fff;
+    font-size: 1.2em;
+}
+</style>
+    
+</head>
+<body>
+    <a href="detail.html" class="back-button">
+        <i class="fas fa-arrow-left"></i> 返回
+    </a>
+
+    <div class="container">
+        <div class="skills-header">
+            <h1>技能详解</h1>
+            <p class="skills-intro">深入了解我的技术栈和专业能力</p>
+            <div class="skills-divider"></div>
+        </div>
+        <div class="skill-grid">
+            <div class="skill-card">
+                <i class="fab fa-html5 skill-icon"></i>
+                <h3>HTML5/CSS3</h3>
+                <div class="skill-level">
+                    <div class="skill-progress" style="width: 90%"></div>
+                </div>
+                <div class="skill-details">
+                    <span class="skill-tag">语义化HTML</span>
+                    <span class="skill-tag">Flex布局</span>
+                    <span class="skill-tag">响应式设计</span>
+                </div>
+            </div>
+        
+            <div class="skill-card">
+                <i class="fab fa-js skill-icon"></i>
+                <h3>JavaScript</h3>
+                <div class="skill-level">
+                    <div class="skill-progress" style="width: 85%"></div>
+                </div>
+                <div class="skill-details">
+                    <span class="skill-tag">ES6+</span>
+                    <span class="skill-tag">DOM操作</span>
+                    <span class="skill-tag">异步编程</span>
+                </div>
+            </div>
+        
+            <div class="skill-card">
+                <i class="fab fa-react skill-icon"></i>
+                <h3>React</h3>
+                <div class="skill-level">
+                    <div class="skill-progress" style="width: 80%"></div>
+                </div>
+                <div class="skill-details">
+                    <span class="skill-tag">Hooks</span>
+                    <span class="skill-tag">Redux</span>
+                    <span class="skill-tag">组件开发</span>
+                </div>
+            </div>
+        </div>
+        <div class="skill-grid">
+            <div class="skill-card">
+                <i class="fab fa-java skill-icon"></i>
+                <h3>Java</h3>
+                <div class="skill-level">
+                    <div class="skill-progress" style="width: 75%"></div>
+                </div>
+                <div class="skill-details">
+                    <span class="skill-tag">Spring Boot</span>
+                    <span class="skill-tag">MyBatis</span>
+                    <span class="skill-tag">Maven</span>
+                </div>
+            </div>
+        
+            <div class="skill-card">
+                <i class="fas fa-database skill-icon"></i>
+                <h3>数据库</h3>
+                <div class="skill-level">
+                    <div class="skill-progress" style="width: 70%"></div>
+                </div>
+                <div class="skill-details">
+                    <span class="skill-tag">MySQL</span>
+                    <span class="skill-tag">Redis</span>
+                    <span class="skill-tag">MongoDB</span>
+                </div>
+            </div>
+        </div>
+        <div class="skill-grid">
+            <div class="skill-card">
+                <i class="fab fa-git-alt skill-icon"></i>
+                <h3>版本控制</h3>
+                <div class="skill-level">
+                    <div class="skill-progress" style="width: 85%"></div>
+                </div>
+                <div class="skill-details">
+                    <span class="skill-tag">Git</span>
+                    <span class="skill-tag">GitHub</span>
+                    <span class="skill-tag">GitLab</span>
+                </div>
+            </div>
+        
+            <div class="skill-card">
+                <i class="fas fa-terminal skill-icon"></i>
+                <h3>开发环境</h3>
+                <div class="skill-level">
+                    <div class="skill-progress" style="width: 80%"></div>
+                </div>
+                <div class="skill-details">
+                    <span class="skill-tag">VS Code</span>
+                    <span class="skill-tag">IDEA</span>
+                    <span class="skill-tag">Docker</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <audio id="bgMusic" loop>
+        <source src="background-music.mp3" type="audio/mp3">
+    </audio>
+    <div id="musicToggle" class="music-toggle">
+        <i class="fas fa-music"></i>
+    </div>
+    <script>
+        // 技能进度条动画
+        function initializeAnimations() {
+    // 技能卡片动画
+    const skillCards = document.querySelectorAll('.skill-card');
+    skillCards.forEach((card, index) => {
+        card.style.animationDelay = `${index * 0.2}s`;
+    });
+
+    // 滚动监听
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.skill-card, .category-header').forEach(el => {
+        observer.observe(el);
+    });
+}
+
+// 平滑滚动
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+        });
+    });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const bgMusic = document.getElementById('bgMusic');
+    const musicToggle = document.getElementById('musicToggle');
+    
+    // 从 localStorage 获取音乐状态
+    let isMusicPlaying = localStorage.getItem('isMusicPlaying') === 'true';
+    
+    // 初始化音乐状态
+    if (isMusicPlaying) {
+        // 添加延迟确保音频元素已加载
+        setTimeout(() => {
+            bgMusic.play().catch(() => {
+                isMusicPlaying = false;
+                localStorage.setItem('isMusicPlaying', 'false');
+                musicToggle.classList.add('paused');
+            });
+        }, 100);
+        musicToggle.classList.remove('paused');
+    } else {
+        bgMusic.pause();
+        musicToggle.classList.add('paused');
+    }
+    
+    // 音乐控制按钮点击事件
+    musicToggle.addEventListener('click', function() {
+        if (bgMusic.paused) {
+            bgMusic.play().then(() => {
+                isMusicPlaying = true;
+                localStorage.setItem('isMusicPlaying', 'true');
+                musicToggle.classList.remove('paused');
+            }).catch(error => {
+                console.log('播放失败:', error);
+            });
+        } else {
+            bgMusic.pause();
+            isMusicPlaying = false;
+            localStorage.setItem('isMusicPlaying', 'false');
+            musicToggle.classList.add('paused');
+        }
+    });
+
+    // 用户首次交互时尝试播放音乐
+    document.addEventListener('click', function initPlay() {
+        if (!isMusicPlaying) {
+            bgMusic.play().then(() => {
+                isMusicPlaying = true;
+                localStorage.setItem('isMusicPlaying', 'true');
+                musicToggle.classList.remove('paused');
+            }).catch(error => {
+                console.log('自动播放失败:', error);
+            });
+        }
+        // 移除事件监听器，确保只执行一次
+        document.removeEventListener('click', initPlay);
+    }, { once: true });
+});
+    </script>
+</body>
+</html>
